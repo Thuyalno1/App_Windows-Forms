@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+using System.Data.Odbc;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -29,18 +29,18 @@ namespace path_2
         {
             try
             {
-                using (MySqlConnection conn = DatabaseHelper.GetConnection())
+                using (OdbcConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
 
                     // Lấy tất cả users
                     string query = @"SELECT Id, Username, Email, Role, CreatedAt 
-                                   FROM Users 
+                                   FROM Users  
                                    ORDER BY CreatedAt DESC";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        using (OdbcDataAdapter adapter = new OdbcDataAdapter(cmd))
                         {
                             DataTable dt = new DataTable();
                             adapter.Fill(dt);
@@ -150,15 +150,15 @@ namespace path_2
 
             try
             {
-                using (MySqlConnection conn = DatabaseHelper.GetConnection())
+                using (OdbcConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
 
                     // Kiểm tra trùng username
-                    string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = @username";
-                    using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn))
+                    string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = ?";
+                    using (OdbcCommand checkCmd = new OdbcCommand(checkQuery, conn))
                     {
-                        checkCmd.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
+                        checkCmd.Parameters.Add("?", OdbcType.VarChar).Value = txtUsername.Text.Trim();
                         int count = Convert.ToInt32(checkCmd.ExecuteScalar());
 
                         if (count > 0)
@@ -174,16 +174,16 @@ namespace path_2
                     string passwordHash = PasswordHelper.HashPassword(txtPassword.Text, salt);
 
                     string query = @"INSERT INTO Users (Username, Email, PasswordHash, Salt, Role, CreatedAt) 
-                                   VALUES (@username, @email, @passwordHash, @salt, @role, @createdAt)";
+                                   VALUES (?, ?, ?, ?, ?, ?)";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
-                        cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                        cmd.Parameters.AddWithValue("@passwordHash", passwordHash);
-                        cmd.Parameters.AddWithValue("@salt", salt);
-                        cmd.Parameters.AddWithValue("@role", cmbRole.Text);
-                        cmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = txtUsername.Text.Trim();
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = txtEmail.Text.Trim();
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = passwordHash;
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = salt;
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = cmbRole.Text;
+                        cmd.Parameters.Add("?", OdbcType.DateTime).Value = DateTime.Now;
 
                         int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -231,20 +231,20 @@ namespace path_2
 
             try
             {
-                using (MySqlConnection conn = DatabaseHelper.GetConnection())
+                using (OdbcConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
 
                     string query = @"UPDATE Users 
-                                   SET Username = @username, Email = @email, Role = @role 
-                                   WHERE Id = @userId";
+                                   SET Username = ?, Email = ?, Role = ? 
+                                   WHERE Id = ?";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@userId", selectedUserId);
-                        cmd.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
-                        cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                        cmd.Parameters.AddWithValue("@role", cmbRole.Text);
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = txtUsername.Text.Trim();
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = txtEmail.Text.Trim();
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = cmbRole.Text;
+                        cmd.Parameters.Add("?", OdbcType.Int).Value = selectedUserId;
 
                         int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -302,15 +302,15 @@ namespace path_2
             {
                 try
                 {
-                    using (MySqlConnection conn = DatabaseHelper.GetConnection())
+                    using (OdbcConnection conn = DatabaseHelper.GetConnection())
                     {
                         conn.Open();
 
-                        string query = "DELETE FROM Users WHERE Id = @userId";
+                        string query = "DELETE FROM Users WHERE Id = ?";
 
-                        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                        using (OdbcCommand cmd = new OdbcCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@userId", selectedUserId);
+                            cmd.Parameters.Add("?", OdbcType.Int).Value = selectedUserId;
 
                             int rowsAffected = cmd.ExecuteNonQuery();
 

@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+﻿using System.Data.Odbc;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -52,16 +52,16 @@ namespace path_2
 
             try
             {
-                using (MySqlConnection conn = DatabaseHelper.GetConnection())
+                using (OdbcConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
 
                     // Lấy danh sách Users (không bao gồm Admin)
                     string query = "SELECT Id, Username FROM Users WHERE Role = 'User' ORDER BY Username";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        using (OdbcDataReader reader = cmd.ExecuteReader())
                         {
                             DataTable dt = new DataTable();
                             dt.Load(reader);
@@ -85,7 +85,7 @@ namespace path_2
         {
             try
             {
-                using (MySqlConnection conn = DatabaseHelper.GetConnection())
+                using (OdbcConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
 
@@ -109,18 +109,18 @@ namespace path_2
                                          creator.Username AS 'Người giao'
                                   FROM Jobs j
                                   LEFT JOIN Users creator ON j.CreatedBy = creator.Id
-                                  WHERE j.AssignedTo = @userId
+                                  WHERE j.AssignedTo = ?
                                   ORDER BY j.CreatedAt DESC";
                     }
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
                         if (!CurrentUser.IsAdmin)
                         {
-                            cmd.Parameters.AddWithValue("@userId", CurrentUser.Id);
+                            cmd.Parameters.Add("?", OdbcType.Int).Value = CurrentUser.Id;
                         }
 
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        using (OdbcDataAdapter adapter = new OdbcDataAdapter(cmd))
                         {
                             DataTable dt = new DataTable();
                             adapter.Fill(dt);
@@ -209,21 +209,21 @@ namespace path_2
 
             try
             {
-                using (MySqlConnection conn = DatabaseHelper.GetConnection())
+                using (OdbcConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
 
                     string query = @"INSERT INTO Jobs (UserId, CreatedBy, AssignedTo, Name, Difficulty, CreatedAt) 
-                                   VALUES (@userId, @createdBy, @assignedTo, @name, @difficulty, @createdAt)";
+                                   VALUES (?, ?, ?, ?, ?, ?)";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@userId", CurrentUser.Id);  // Thêm UserId
-                        cmd.Parameters.AddWithValue("@createdBy", CurrentUser.Id);
-                        cmd.Parameters.AddWithValue("@assignedTo", cmbAssignTo.SelectedValue);
-                        cmd.Parameters.AddWithValue("@name", txtJobName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@difficulty", cmbDifficulty.Text);
-                        cmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
+                        cmd.Parameters.Add("?", OdbcType.Int).Value = CurrentUser.Id;  // UserId
+                        cmd.Parameters.Add("?", OdbcType.Int).Value = CurrentUser.Id;  // CreatedBy
+                        cmd.Parameters.Add("?", OdbcType.Int).Value = cmbAssignTo.SelectedValue;
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = txtJobName.Text.Trim();
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = cmbDifficulty.Text;
+                        cmd.Parameters.Add("?", OdbcType.DateTime).Value = DateTime.Now;
 
                         int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -259,21 +259,21 @@ namespace path_2
 
             try
             {
-                using (MySqlConnection conn = DatabaseHelper.GetConnection())
+                using (OdbcConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
 
                     string query = @"UPDATE Jobs 
-                                   SET Name = @name, Difficulty = @difficulty, AssignedTo = @assignedTo 
-                                   WHERE Id = @jobId AND CreatedBy = @userId";
+                                   SET Name = ?, Difficulty = ?, AssignedTo = ? 
+                                   WHERE Id = ? AND CreatedBy = ?";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@jobId", selectedJobId);
-                        cmd.Parameters.AddWithValue("@userId", CurrentUser.Id);
-                        cmd.Parameters.AddWithValue("@name", txtJobName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@difficulty", cmbDifficulty.Text);
-                        cmd.Parameters.AddWithValue("@assignedTo", cmbAssignTo.SelectedValue);
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = txtJobName.Text.Trim();  // Name
+                        cmd.Parameters.Add("?", OdbcType.VarChar).Value = cmbDifficulty.Text;  // Difficulty
+                        cmd.Parameters.Add("?", OdbcType.Int).Value = cmbAssignTo.SelectedValue;  // AssignedTo
+                        cmd.Parameters.Add("?", OdbcType.Int).Value = selectedJobId;  // Id
+                        cmd.Parameters.Add("?", OdbcType.Int).Value = CurrentUser.Id;  // CreatedBy
 
                         int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -315,16 +315,16 @@ namespace path_2
             {
                 try
                 {
-                    using (MySqlConnection conn = DatabaseHelper.GetConnection())
+                    using (OdbcConnection conn = DatabaseHelper.GetConnection())
                     {
                         conn.Open();
 
-                        string query = "DELETE FROM Jobs WHERE Id = @jobId AND CreatedBy = @userId";
+                        string query = "DELETE FROM Jobs WHERE Id = ? AND CreatedBy = ?";
 
-                        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                        using (OdbcCommand cmd = new OdbcCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@jobId", selectedJobId);
-                            cmd.Parameters.AddWithValue("@userId", CurrentUser.Id);
+                            cmd.Parameters.Add("?", OdbcType.Int).Value = selectedJobId;
+                            cmd.Parameters.Add("?", OdbcType.Int).Value = CurrentUser.Id;
 
                             int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -394,3 +394,5 @@ namespace path_2
         }
     }
 }
+
+

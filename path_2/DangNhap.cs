@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+using System.Data.Odbc;
 using System;
 using System.Windows.Forms;
 
@@ -23,7 +23,8 @@ namespace path_2
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi đăng nhập: {ex.Message}", "Lỗi", 
+                MessageBox.Show($"{Constants.AuthMessages.LOGIN_FAILED}\n{ex.Message}", 
+                    $"Lỗi {Constants.ERR_LOGIN_FAILED}", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -32,7 +33,8 @@ namespace path_2
         {
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                MessageBox.Show("Vui lòng nhập username!", "Thông báo", 
+                MessageBox.Show(Constants.ValidationMessages.RequiredField("Tên đăng nhập"), 
+                    "Thông báo", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtUsername.Focus();
                 return false;
@@ -40,7 +42,8 @@ namespace path_2
 
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                MessageBox.Show("Vui lòng nhập password!", "Thông báo", 
+                MessageBox.Show(Constants.ValidationMessages.RequiredField("Mật khẩu"), 
+                    "Thông báo", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPassword.Focus();
                 return false;
@@ -54,26 +57,28 @@ namespace path_2
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
 
-            using (MySqlConnection conn = DatabaseHelper.GetConnection())
+            using (OdbcConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
 
                 // Lấy thông tin user từ database (bao gồm Role)
-                string query = "SELECT Id, Username, Email, PasswordHash, Salt, Role FROM Users WHERE Username = @username";
+                string query = "SELECT Id, Username, Email, PasswordHash, Salt, Role FROM Users WHERE Username = ?";
 
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (OdbcCommand cmd = new OdbcCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.Add("?", OdbcType.VarChar).Value = username;
 
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (OdbcDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            int userId = reader.GetInt32("Id");
-                            string storedHash = reader.GetString("PasswordHash");
-                            string storedSalt = reader.GetString("Salt");
-                            string email = reader.GetString("Email");
-                            string role = reader.GetString("Role");
+                            // ODBC yêu cầu dùng column index thay vì column name
+                            // SELECT Id, Username, Email, PasswordHash, Salt, Role FROM Users
+                            int userId = reader.GetInt32(0);           // Id
+                            string storedHash = reader.GetString(3);   // PasswordHash
+                            string storedSalt = reader.GetString(4);   // Salt
+                            string email = reader.GetString(2);        // Email
+                            string role = reader.GetString(5);         // Role
 
                             // Verify password
                             if (PasswordHelper.VerifyPassword(password, storedHash, storedSalt))
@@ -89,7 +94,7 @@ namespace path_2
                                 CurrentUser.Email = email;
                                 CurrentUser.Role = role;
 
-                                MessageBox.Show($"Đăng nhập thành công!\n\nChào mừng {username} ({email})\nVai trò: {role}", 
+                                MessageBox.Show($"{Constants.AuthMessages.LOGIN_SUCCESS}\n\nChào mừng {username} ({email})\nVai trò: {role}", 
                                     "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 //  MỞ MAIN DASHBOARD FORM
@@ -100,7 +105,8 @@ namespace path_2
                             }
                             else
                             {
-                                MessageBox.Show("Password không đúng!", "Thông báo", 
+                                MessageBox.Show(Constants.AuthMessages.LOGIN_FAILED, 
+                                    $"Lỗi {Constants.ERR_LOGIN_FAILED}", 
                                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 txtPassword.Clear();
                                 txtPassword.Focus();
@@ -108,7 +114,8 @@ namespace path_2
                         }
                         else
                         {
-                            MessageBox.Show("Username không tồn tại!", "Thông báo", 
+                            MessageBox.Show(Constants.AuthMessages.LOGIN_FAILED, 
+                                $"Lỗi {Constants.ERR_LOGIN_FAILED}", 
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             txtUsername.Focus();
                         }
@@ -117,13 +124,13 @@ namespace path_2
             }
         }
 
-        private void UpdateLastLogin(MySqlConnection conn, int userId)
+        private void UpdateLastLogin(OdbcConnection conn, int userId)
         {
-            string updateQuery = "UPDATE Users SET LastLogin = @lastLogin WHERE Id = @userId";
-            using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
+            string updateQuery = "UPDATE Users SET LastLogin = ? WHERE Id = ?";
+            using (OdbcCommand updateCmd = new OdbcCommand(updateQuery, conn))
             {
-                updateCmd.Parameters.AddWithValue("@lastLogin", DateTime.Now);
-                updateCmd.Parameters.AddWithValue("@userId", userId);
+                updateCmd.Parameters.Add("?", OdbcType.DateTime).Value = DateTime.Now;
+                updateCmd.Parameters.Add("?", OdbcType.Int).Value = userId;
                 updateCmd.ExecuteNonQuery();
             }
         }

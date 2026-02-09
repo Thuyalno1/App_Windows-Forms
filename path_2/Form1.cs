@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System.Data.Odbc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,17 +26,18 @@ namespace path_2
         public void getData()
         {
             string conString = "server=localhost;uid=root;pwd=thuymv;database=path_1;";
-            MySqlConnection con = new MySqlConnection(conString);
+            OdbcConnection con = new OdbcConnection(conString);
             con.Open();
 
-            string query = "Select * from student"; // đúng bảng bạn đã tạo
-            MySqlCommand cmd = new MySqlCommand(query, con);
+            string query = "Select * from student"; // d�ng b?ng b?n d� t?o
+            OdbcCommand cmd = new OdbcCommand(query, con);
 
-            MySqlDataReader reader = cmd.ExecuteReader();
+            OdbcDataReader reader = cmd.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(reader);
 
-            dataGridView1.DataSource = dt; // giờ sẽ KHÔNG lỗi nữa
+            dataGridView1.DataSource = dt; // gi? s? KH�NG l?i n?a
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+using System.Data.Odbc;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -117,16 +117,16 @@ namespace path_2
             string salt = PasswordHelper.GenerateSalt();
             string passwordHash = PasswordHelper.HashPassword(password, salt);
 
-            using (MySqlConnection conn = DatabaseHelper.GetConnection())
+            using (OdbcConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
 
                 // Kiểm tra username đã tồn tại chưa
-                string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = @username OR Email = @email";
-                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn))
+                string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = ? OR Email = ?";
+                using (OdbcCommand checkCmd = new OdbcCommand(checkQuery, conn))
                 {
-                    checkCmd.Parameters.AddWithValue("@username", username);
-                    checkCmd.Parameters.AddWithValue("@email", email);
+                    checkCmd.Parameters.Add("?", OdbcType.VarChar).Value = username;
+                    checkCmd.Parameters.Add("?", OdbcType.VarChar).Value = email;
 
                     int count = Convert.ToInt32(checkCmd.ExecuteScalar());
                     if (count > 0)
@@ -139,15 +139,15 @@ namespace path_2
 
                 // Insert user mới
                 string insertQuery = @"INSERT INTO Users (Username, Email, PasswordHash, Salt, CreatedAt) 
-                                      VALUES (@username, @email, @passwordHash, @salt, @createdAt)";
+                                      VALUES (?, ?, ?, ?, ?)";
 
-                using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn))
+                using (OdbcCommand insertCmd = new OdbcCommand(insertQuery, conn))
                 {
-                    insertCmd.Parameters.AddWithValue("@username", username);
-                    insertCmd.Parameters.AddWithValue("@email", email);
-                    insertCmd.Parameters.AddWithValue("@passwordHash", passwordHash);
-                    insertCmd.Parameters.AddWithValue("@salt", salt);
-                    insertCmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
+                    insertCmd.Parameters.Add("?", OdbcType.VarChar).Value = username;
+                    insertCmd.Parameters.Add("?", OdbcType.VarChar).Value = email;
+                    insertCmd.Parameters.Add("?", OdbcType.VarChar).Value = passwordHash;
+                    insertCmd.Parameters.Add("?", OdbcType.VarChar).Value = salt;
+                    insertCmd.Parameters.Add("?", OdbcType.DateTime).Value = DateTime.Now;
 
                     int rowsAffected = insertCmd.ExecuteNonQuery();
 

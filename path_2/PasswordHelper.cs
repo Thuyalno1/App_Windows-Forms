@@ -28,10 +28,10 @@ namespace path_2
         public static string HashPassword(string password, string salt)
         {
             if (string.IsNullOrEmpty(password))
-                throw new ArgumentException("Password không được để trống");
+                throw new ArgumentException(Constants.ValidationMessages.RequiredField("Password"));
 
             if (string.IsNullOrEmpty(salt))
-                throw new ArgumentException("Salt không được để trống");
+                throw new ArgumentException(Constants.ValidationMessages.RequiredField("Salt"));
 
             // Kết hợp password + salt
             string saltedPassword = password + salt;
