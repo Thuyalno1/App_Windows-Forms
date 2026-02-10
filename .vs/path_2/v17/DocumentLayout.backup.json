@@ -1,22 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\VSII\\Learn_VSII\\path_2\\",
+  "WorkspaceRootPath": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|d:\\vsii\\learn_vsii\\path_2\\path_2\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|d:\\vsii\\learn_vsii\\path_2\\app_windows-forms\\path_2\\quanlycongviec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\quanlycongviec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|d:\\vsii\\learn_vsii\\path_2\\path_2\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\quanlycongviec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\quanlycongviec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|D:\\VSII\\Learn_VSII\\path_2\\path_2\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\dangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\dangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\dangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\dangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|D:\\VSII\\Learn_VSII\\path_2\\path_2\\dangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\dangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1EE7CEF6-BAB8-4559-B2D7-62759D44CE58}|path_2\\path_2.csproj|solutionrelative:path_2\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,38 +47,83 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DatabaseHelper.cs",
-              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\path_2\\DatabaseHelper.cs",
-              "RelativeDocumentMoniker": "path_2\\DatabaseHelper.cs",
-              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\path_2\\DatabaseHelper.cs",
-              "RelativeToolTip": "path_2\\DatabaseHelper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAWAAAAAAAAAA==",
+              "Title": "QuanLyCongViec.cs",
+              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\QuanLyCongViec.cs",
+              "RelativeDocumentMoniker": "path_2\\QuanLyCongViec.cs",
+              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\QuanLyCongViec.cs",
+              "RelativeToolTip": "path_2\\QuanLyCongViec.cs",
+              "ViewState": "AgIAACUBAAAAAAAAAAAMwPsAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T03:53:27.294Z",
+              "WhenOpened": "2026-02-09T08:17:18.219Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DangNhap.cs",
-              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\path_2\\DangNhap.cs",
-              "RelativeDocumentMoniker": "path_2\\DangNhap.cs",
-              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\path_2\\DangNhap.cs",
-              "RelativeToolTip": "path_2\\DangNhap.cs",
-              "ViewState": "AgIAAKoAAAAAAAAAAAAAAJYAAAAJAAAAAAAAAA==",
+              "Title": "QuanLyCongViec.cs [Design]",
+              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\QuanLyCongViec.cs",
+              "RelativeDocumentMoniker": "path_2\\QuanLyCongViec.cs",
+              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\QuanLyCongViec.cs [Design]",
+              "RelativeToolTip": "path_2\\QuanLyCongViec.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T03:15:59.705Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T08:17:14.568Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "DangKy.cs",
+              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\DangKy.cs",
+              "RelativeDocumentMoniker": "path_2\\DangKy.cs",
+              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\DangKy.cs",
+              "RelativeToolTip": "path_2\\DangKy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHcAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T06:27:28.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DangNhap.cs [Design]",
+              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\DangNhap.cs",
+              "RelativeDocumentMoniker": "path_2\\DangNhap.cs",
+              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\path_2\\DangNhap.cs [Design]",
+              "RelativeToolTip": "..\\path_2\\DangNhap.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T04:03:25.803Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DatabaseHelper.cs",
+              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\DatabaseHelper.cs",
+              "RelativeDocumentMoniker": "path_2\\DatabaseHelper.cs",
+              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\DatabaseHelper.cs",
+              "RelativeToolTip": "path_2\\DatabaseHelper.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAswGYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T03:53:27.294Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DangNhap.cs",
+              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\DangNhap.cs",
+              "RelativeDocumentMoniker": "path_2\\DangNhap.cs",
+              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\DangNhap.cs",
+              "RelativeToolTip": "path_2\\DangNhap.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCMAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T03:15:59.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Constants.cs",
-              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\path_2\\Constants.cs",
+              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\Constants.cs",
               "RelativeDocumentMoniker": "path_2\\Constants.cs",
-              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\path_2\\Constants.cs",
+              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\Constants.cs",
               "RelativeToolTip": "path_2\\Constants.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAK8AAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-09T03:15:46.152Z"
             },
@@ -70,9 +131,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "DangKy.cs [Design]",
-              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\path_2\\DangKy.cs",
+              "DocumentMoniker": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\DangKy.cs",
               "RelativeDocumentMoniker": "path_2\\DangKy.cs",
-              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\path_2\\DangKy.cs [Design]",
+              "ToolTip": "D:\\VSII\\Learn_VSII\\path_2\\App_Windows-Forms\\path_2\\DangKy.cs [Design]",
               "RelativeToolTip": "path_2\\DangKy.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-09T03:15:45.627Z"

@@ -189,5 +189,10 @@ namespace path_2
             dangNhap.Show();
             this.Hide();
         }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

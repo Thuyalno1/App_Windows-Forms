@@ -84,6 +84,7 @@ namespace path_2
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(250, 22);
             this.txtUsername.TabIndex = 4;
+            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
             // 
             // txtEmail
             // 
