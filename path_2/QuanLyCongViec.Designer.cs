@@ -43,7 +43,15 @@ namespace path_2
             this.lblAssignTo = new System.Windows.Forms.Label();
             this.cmbAssignTo = new System.Windows.Forms.ComboBox();
             this.btnBackToDashboard = new System.Windows.Forms.Button();
+            this.lblProgress = new System.Windows.Forms.Label();
+            this.nudProgress = new System.Windows.Forms.NumericUpDown();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.btnUpdateProgress = new System.Windows.Forms.Button();
+            this.grpProgress = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJobs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProgress)).BeginInit();
+            this.grpProgress.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -206,7 +214,7 @@ namespace path_2
             this.btnBackToDashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
             this.btnBackToDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBackToDashboard.ForeColor = System.Drawing.Color.White;
-            this.btnBackToDashboard.Location = new System.Drawing.Point(50, 590);
+            this.btnBackToDashboard.Location = new System.Drawing.Point(50, 670);
             this.btnBackToDashboard.Name = "btnBackToDashboard";
             this.btnBackToDashboard.Size = new System.Drawing.Size(120, 35);
             this.btnBackToDashboard.TabIndex = 15;
@@ -214,11 +222,80 @@ namespace path_2
             this.btnBackToDashboard.UseVisualStyleBackColor = false;
             this.btnBackToDashboard.Click += new System.EventHandler(this.btnBackToDashboard_Click);
             // 
+            // grpProgress
+            // 
+            this.grpProgress.Controls.Add(this.btnUpdateProgress);
+            this.grpProgress.Controls.Add(this.txtStatus);
+            this.grpProgress.Controls.Add(this.lblStatus);
+            this.grpProgress.Controls.Add(this.nudProgress);
+            this.grpProgress.Controls.Add(this.lblProgress);
+            this.grpProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.grpProgress.Location = new System.Drawing.Point(50, 580);
+            this.grpProgress.Name = "grpProgress";
+            this.grpProgress.Size = new System.Drawing.Size(700, 75);
+            this.grpProgress.TabIndex = 16;
+            this.grpProgress.TabStop = false;
+            this.grpProgress.Text = "Cập Nhật Tiến Độ Công Việc";
+            this.grpProgress.Visible = false;
+            // 
+            // lblProgress
+            // 
+            this.lblProgress.AutoSize = true;
+            this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblProgress.Location = new System.Drawing.Point(20, 35);
+            this.lblProgress.Name = "lblProgress";
+            this.lblProgress.Size = new System.Drawing.Size(95, 18);
+            this.lblProgress.TabIndex = 0;
+            this.lblProgress.Text = "Tiến độ (%):";
+            // 
+            // nudProgress
+            // 
+            this.nudProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.nudProgress.Location = new System.Drawing.Point(120, 33);
+            this.nudProgress.Name = "nudProgress";
+            this.nudProgress.Size = new System.Drawing.Size(80, 24);
+            this.nudProgress.TabIndex = 1;
+            this.nudProgress.ValueChanged += new System.EventHandler(this.nudProgress_ValueChanged);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblStatus.Location = new System.Drawing.Point(220, 35);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(84, 18);
+            this.lblStatus.TabIndex = 2;
+            this.lblStatus.Text = "Trạng thái:";
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.txtStatus.Location = new System.Drawing.Point(310, 32);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
+            this.txtStatus.Size = new System.Drawing.Size(120, 24);
+            this.txtStatus.TabIndex = 3;
+            // 
+            // btnUpdateProgress
+            // 
+            this.btnUpdateProgress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            this.btnUpdateProgress.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnUpdateProgress.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateProgress.Location = new System.Drawing.Point(450, 28);
+            this.btnUpdateProgress.Name = "btnUpdateProgress";
+            this.btnUpdateProgress.Size = new System.Drawing.Size(200, 32);
+            this.btnUpdateProgress.TabIndex = 4;
+            this.btnUpdateProgress.Text = "✅ Cập Nhật Tiến Độ";
+            this.btnUpdateProgress.UseVisualStyleBackColor = false;
+            this.btnUpdateProgress.Click += new System.EventHandler(this.btnUpdateProgress_Click);
+            // 
             // QuanLyCongViec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 650);
+            this.ClientSize = new System.Drawing.Size(800, 730);
+            this.Controls.Add(this.grpProgress);
             this.Controls.Add(this.btnBackToDashboard);
             this.Controls.Add(this.cmbAssignTo);
             this.Controls.Add(this.lblAssignTo);
@@ -240,6 +317,9 @@ namespace path_2
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản Lý Công Việc";
             ((System.ComponentModel.ISupportInitialize)(this.dgvJobs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProgress)).EndInit();
+            this.grpProgress.ResumeLayout(false);
+            this.grpProgress.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,5 +342,11 @@ namespace path_2
         private System.Windows.Forms.Label lblAssignTo;
         private System.Windows.Forms.ComboBox cmbAssignTo;
         private System.Windows.Forms.Button btnBackToDashboard;
+        private System.Windows.Forms.GroupBox grpProgress;
+        private System.Windows.Forms.Label lblProgress;
+        private System.Windows.Forms.NumericUpDown nudProgress;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.Button btnUpdateProgress;
     }
 }
